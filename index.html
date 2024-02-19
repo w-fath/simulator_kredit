@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>PT Tecno Fath Finance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description" content="Simulasi">
+  <meta name="author" content="Webarq">
+  <link rel="shortcut icon" type="images/x-icon" href="assets/20240219_101736.png" />
+  <link rel="canonical" href="https://www.kreditplus.com/simulasi">
+  <meta http-equiv="cache-control" content="max-age=0" />
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="expires" content="0" />
+  <meta http-equiv="expires" content="Mon, 19 Feb 2024 16:46:32 Asia/Jakarta" />
+  <meta http-equiv="pragma" content="no-cache" />
+
+  <link rel="stylesheet" href="styles.min.css">
+  <script type="text/javascript" src="https://www.kreditplus.com/vendor/webarq/front-end/optimized/js/main.min.js"></script>
+  <script>
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WFTGP52');
+  </script>
+
+  <script>
+    ! function (f, b, e, v, n, t, s) {
+      if (f.fbq) return;
+      n = f.fbq = function () {
+        n.callMethod ?
+          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      };
+      if (!f._fbq) f._fbq = n;
+      n.push = n;
+      n.loaded = !0;
+      n.version = '2.0';
+      n.queue = [];
+      t = b.createElement(e);
+      t.async = !0;
+      t.src = v;
+      s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '301692557962402');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=301692557962402&ev=PageView&noscript=1" /></noscript>
+
+  <script>
+    ! function (w, d, t) {
+      w.TiktokAnalyticsObject = t;
+      var ttq = w[t] = w[t] || [];
+      ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie"], ttq.setAndDefer = function (t, e) {
+        t[e] = function () {
+          t.push([e].concat(Array.prototype.slice.call(arguments, 0)))
+        }
+      };
+      for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
+      ttq.instance = function (t) {
+        for (var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++) ttq.setAndDefer(e, ttq.methods[n]);
+        return e
+      }, ttq.load = function (e, n) {
+        var i = "https://analytics.tiktok.com/i18n/pixel/events.js";
+        ttq._i = ttq._i || {}, ttq._i[e] = [], ttq._i[e]._u = i, ttq._t = ttq._t || {}, ttq._t[e] = +new Date, ttq._o = ttq._o || {}, ttq._o[e] = n || {};
+        n = document.createElement("script");
+        n.type = "text/javascript", n.async = !0, n.src = i + "?sdkid=" + e + "&lib=" + t;
+        e = document.getElementsByTagName("script")[0];
+        e.parentNode.insertBefore(n, e)
+      };
+
+      ttq.load('CAK6QC3C77U1E8B1DB2G');
+      ttq.page();
+    }(window, document, 'ttq');
+  </script>
+</head>
+
+<body>
+  <section class="ctnwp">
+    <div class="wrap-sm">
+      <style>
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        input[type=number] {
+          -moz-appearance: textfield;
+        }
+      </style>
+      <h3 class="tblue">SIMULASI KREDIT</h3>
+
+      <div class="career-form box-form">
+        <div class="left">
+          <form>
+            <div class="row">
+              <label>Tenor</label>
+              <select id="tenor">
+                <option value="1">1 bulan</option>
+                <option value="3">3 bulan</option>
+                <option value="6">6 bulan</option>
+                <option value="12">12 bulan</option>
+                <option value="36" disabled>36 bulan</option>
+                <option value="60" disabled>60 bulan</option>
+              </select>
+            </div>
+            <div class="row">
+              <label>Harga</label>
+              <input type="text" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);" name="harga" class="i">
+            </div>
+            <div class="row">
+              <label>Uang Muka</label>
+              <input type="text" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);" id="dpx" class="i" placeholder="Min. 250.000">
+            </div>
+            <div class="row">
+              <label>Bunga %</label>
+              <input type="number" class="i" name="bunga" placeholder="Min 2%" value="3" disabled>
+            </div>
+            <div class="row">
+              <label>Biaya Administrasi</label>
+              <input type="number" class="block" placeholder="50.000" disabled>
+            </div>
+            <div class="row submit">
+              <input type="button" onclick="simulasi()" class="btn-box btn-lg" value="Simulasi">
+            </div>
+          </form>
+        </div>
+        <div class="right">
+          <div class="address-box a-center">
+            <h4 class="reg">Pembayaran Perbulan</h4>
+            <h3 id="angsuran"></h3>
+            <br>
+            <h4 class="reg">Pembayaran Awal</h4>
+            <h3 id="dp_awal"></h3>
+          </div>
+        </div>
+      </div>
+      <script type="text/javascript" src="https://www.kreditplus.com/a.js"></script>
+      <script>
+        $(document).ready(function () {
+
+        });
+
+        function simulasi() {
+          var i = 0;
+          $('.i:input').each(function (k, v) {
+            if ($(v).val() == "") {
+              $(this).css({
+                'border-color': 'red'
+              });
+              i++;
+            }
+
+          });
+          if ($("#tenor").val() == "") {
+            $("#select").css({
+              'border-color': 'red'
+            });
+            i++;
+          }
+          // Validasi Uang Muka
+          var uangMuka = parseFloat($("#dpx").val().replace(".", "").replace(",", ""));
+          if (uangMuka < 250000) {
+              $("#dpx").css({
+                  'border-color': 'red'
+              });
+              alert("Uang Muka harus minimal Rp. 250.000");
+              i++;
+          }
+          if (i == 0) {
+            var tenor = $("#tenor").val();
+            var harga = $('[name="harga"]').val();
+            harga = replaceTitik(harga);
+            var dp = $("#dpx").val();
+            dp = replaceTitik(dp);
+            var bunga = $('[name="bunga"]').val();
+            var cicilan = parseInt(harga) / parseInt(tenor);
+            var persen = parseInt(bunga) / 100;
+            var bunga_cicilan = (parseInt(harga) * persen) / 1;
+            var angsuran = cicilan + bunga_cicilan;
+            var tmp = "";
+            tmp = angsuran.toFixed(2);
+            var e = tmp.split(".");
+            console.log(e);
+            var t = "";
+            if (e.length) {
+              t = e[0];
+            } else {
+              t = angsuran;
+            }
+            var rupiahx = rupiah(t);
+            if (e.length && e[1] != "00") {
+              rupiahx += "," + e[1];
+            }
+            $("#angsuran").html(rupiahx);
+            $("#dp_awal").html(rupiah(dp));
+            $("#btns").show();
+          }
+        }
+
+        function replaceTitik(v) {
+          var ret = '';
+          for (var i = 0; i < v.length; i++) {
+            if (v[i] != ".")
+              ret += v[i];
+          }
+          return ret;
+        }
+
+        function rupiah(val) {
+          var number_string = val.toString();
+          number_string = number_string.replace("-", "");
+          var sisa = number_string.length % 3,
+            rupiah = number_string.substr(0, sisa),
+            ribuan = number_string.substr(sisa).match(/\d{3}/g);
+
+          if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+          }
+          return "Rp. " + rupiah;
+        }
+      </script>
+    </div>
+  </section>
+  <footer>
+    <style>
+      .logo-foot img {
+        width: 100px; 
+        height: auto; 
+      }
+    </style>
+    <div class="foot-bottom">
+      <div class="wrapper">
+        <div class="logo-foot">
+          <a href="" target="_blank">
+            <img src="assets/logo/hitam1.png">
+          </a>
+        </div>
+        <div class="copyright">Copyright © 2023 PT Tecno Fath Finance</div>
+        <div class="sosmed-foot">
+          <span>Follow Us</span>
+          <a href="https://www.facebook.com/KreditplusOfficial/" target="_blank"><i class="icwp ic_fb"></i></a>
+          <a href="https://www.instagram.com/kb.kreditplus/" target="_blank"><i class="icwp ic_ig"></i></a>
+          <a href="https://twitter.com/KBKreditplus" target="_blank"><i class="icwp ic_tw"></i></a>
+          <a href="https://www.linkedin.com/company/pt-kb-finansia-multi-finance/mycompany/" target="_blank"><i class="icwp ic_in"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    $(document).ready(function () {
+      $("#sm").submit(function () {
+        if ($("#em").val() != "") {
+          $.post("https://www.kreditplus.com/newsletter", {
+            'data': $("#em").val(),
+            '_token': "vOxRYAQ1gzOTBogDIWOHypiwR6Sa2YAv0ShVcwEJ"
+          }, function (res) {
+            if (res.response == "ok") {
+              var msg_ok = "Thank you for registering with Kreditplus";
+              $("#tooltip_msg .intooltip").text(msg_ok);
+              $("#tooltip_msg").show();
+            } else {
+              if (res.response == "err") {
+                var msg_err = "Email Already Registered";
+                $("#tooltip_msg .intooltip").text(msg_err);
+                $("#tooltip_msg").show();
+
+              }
+            }
+            $("#em").val("");
+            $("#em").css({
+              'border-color': ''
+            });
+            if ($("#tooltip_msg").length) {
+              setTimeout(function () {
+                $("#tooltip_msg").hide('slow');
+              }, 5000);
+            }
+          }, 'json');
+        } else {
+          $("#em").css({
+            'border-color': 'red'
+          });
+        }
+        return false;
+      });
+    });
+  </script> <!-- Google tag (gtag.js) -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-38CJYSNMD8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-38CJYSNMD8');
+  </script>
+</body>
+
+</html>
