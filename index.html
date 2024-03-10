@@ -1,325 +1,325 @@
+<?php
+require_once 'config/config.php';
+
+if (isset($_SESSION["user"])) {
+    $id = $_SESSION["user"];
+    $result = query("SELECT * FROM users WHERE id_user = $id")[0];
+    if ($result['roles'] == 'ADMIN') {
+        header("Location: admin");
+    } elseif ($result["roles"] == 'OWNER') {
+        header("Location: owner");
+    }
+}
+
+if (isset($_SESSION["driver"])) {
+    header("Location: driver");
+}
+
+
+?>
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>PT Tecno Fath Finance</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="description" content="Simulasi">
-  <meta name="author" content="Webarq">
-  <link rel="shortcut icon" type="images/x-icon" href="assets/20240219_101736.png" />
-  <link rel="canonical" href="https://www.kreditplus.com/simulasi">
-  <meta http-equiv="cache-control" content="max-age=0" />
-  <meta http-equiv="cache-control" content="no-cache" />
-  <meta http-equiv="expires" content="0" />
-  <meta http-equiv="expires" content="Mon, 19 Feb 2024 16:46:32 Asia/Jakarta" />
-  <meta http-equiv="pragma" content="no-cache" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
 
-  <link rel="stylesheet" href="styles.min.css">
-  <script type="text/javascript" src="https://www.kreditplus.com/vendor/webarq/front-end/optimized/js/main.min.js"></script>
-  <script>
-    (function (w, d, s, l, i) {
-      w[l] = w[l] || [];
-      w[l].push({
-        'gtm.start': new Date().getTime(),
-        event: 'gtm.js'
-      });
-      var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l != 'dataLayer' ? '&l=' + l : '';
-      j.async = true;
-      j.src =
-        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-      f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-WFTGP52');
-  </script>
+  <title>Tecno Fath Finance.</title>
 
-  <script>
-    ! function (f, b, e, v, n, t, s) {
-      if (f.fbq) return;
-      n = f.fbq = function () {
-        n.callMethod ?
-          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-      };
-      if (!f._fbq) f._fbq = n;
-      n.push = n;
-      n.loaded = !0;
-      n.version = '2.0';
-      n.queue = [];
-      t = b.createElement(e);
-      t.async = !0;
-      t.src = v;
-      s = b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t, s)
-    }(window, document, 'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '301692557962402');
-    fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=301692557962402&ev=PageView&noscript=1" /></noscript>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <link href="assets/style/main.css" rel="stylesheet" />
 
-  <script>
-    ! function (w, d, t) {
-      w.TiktokAnalyticsObject = t;
-      var ttq = w[t] = w[t] || [];
-      ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie"], ttq.setAndDefer = function (t, e) {
-        t[e] = function () {
-          t.push([e].concat(Array.prototype.slice.call(arguments, 0)))
-        }
-      };
-      for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
-      ttq.instance = function (t) {
-        for (var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++) ttq.setAndDefer(e, ttq.methods[n]);
-        return e
-      }, ttq.load = function (e, n) {
-        var i = "https://analytics.tiktok.com/i18n/pixel/events.js";
-        ttq._i = ttq._i || {}, ttq._i[e] = [], ttq._i[e]._u = i, ttq._t = ttq._t || {}, ttq._t[e] = +new Date, ttq._o = ttq._o || {}, ttq._o[e] = n || {};
-        n = document.createElement("script");
-        n.type = "text/javascript", n.async = !0, n.src = i + "?sdkid=" + e + "&lib=" + t;
-        e = document.getElementsByTagName("script")[0];
-        e.parentNode.insertBefore(n, e)
-      };
 
-      ttq.load('CAK6QC3C77U1E8B1DB2G');
-      ttq.page();
-    }(window, document, 'ttq');
-  </script>
+  <style>
+    .store-adventeges {
+      padding: 40px;
+      background-color: #F7F7E8;
+    }
+  </style>
 </head>
 
 <body>
-  <section class="ctnwp">
-    <div class="wrap-sm">
-      <style>
-        input[type=number]::-webkit-outer-spin-button,
-        input[type=number]::-webkit-inner-spin-button {
-          -webkit-appearance: none;
-          margin: 0;
-        }
+  <!-- navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light navbar-store fixed-top navbar-fixed-top" data-aos="fade-down">
+    <div class="container">
+      <a href="index.php" class="navbar-brand" title="home">
+        <img src="assets/images/logo/logo_atas.png" class="w-50" alt="logo" />
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collpase navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a href="index.php" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="products.php" class="nav-link">Products</a>
+          </li>
+          <li class="nav-item">
+            <a href="about.php" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">Simulator</a>
+          </li>
+          <?php
+                    if (!isset($_SESSION["login"]) && !isset($_SESSION["user"])) : ?>
+          <li class="nav-item">
+            <a href="register.php" class="nav-link">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a href="login.php" class="btn btn-success nav-link px-4 text-white">Sign In</a>
+          </li>
+          <?php else : ?>
+          <li class="nav-item dropdown">
+            <?php
+                            $id = $_SESSION["user"];
+                            $user = query("SELECT * FROM users WHERE id_user = $id")[0];
+                            ?>
+            <a href="#" class="nav-link font-weight-bold" id="navbarDropdown" role="button" data-toggle="dropdown">
+              <!-- <img
+                      src="../assets/images/user_pc.png"
+                      alt="profile"
+                      class="rounded-circle mr-2 profile-picture"
+                    /> -->
+              Hi,
+              <?= $user["name"]; ?>
+            </a>
+            <div class="dropdown-menu">
+              <?php if ($user["roles"] == 'ADMIN') : ?>
+              <a href="admin" class="dropdown-item">
+                Dashboard
+              </a>
+              <?php else : ?>
+              <a href="user" class="dropdown-item">
+                Dashboard
+              </a>
+              <?php endif; ?>
+              <div class="dropdown-divider"></div>
+              <a href="logout.php" class="dropdown-item">logout</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <?php
+                            $id = $user["id_user"];
+                            $carts = rows("SELECT * FROM carts WHERE user_id = $id");
+                            ?>
+            <?php if ($carts >= 1) : ?>
+            <a href="cart.php" class="nav-link d-inline-block">
+              <img src="assets/images/shopping-cart-filled.svg" alt="cart-empty" />
+              <div class="cart-badge">
+                <?= $carts; ?>
+              </div>
+            </a>
+            <?php else : ?>
+            <a href="cart.php" class="nav-link d-inline-block">
+              <img src="assets/images/icon-cart-empty.svg" alt="cart-empty" />
+            </a>
+            <?php endif; ?>
+          </li>
+          <?php endif; ?>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- akhir navbar -->
 
-        input[type=number] {
-          -moz-appearance: textfield;
-        }
-      </style>
-      <h3 class="tblue">SIMULASI KREDIT</h3>
+  <!-- page content -->
+  <div data-aos="zoom-in">
+    <link rel="stylesheet" href="assets_simulator/styles.min.css">
+    <style>
+      .atas {
+        margin-top: 30px;
+      }
+    </style>
+    <section class="ctnwp atas">
+      <div class="wrap-sm">
+        <style>
+          input[type=number]::-webkit-outer-spin-button,
+          input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
 
-      <div class="career-form box-form">
-        <div class="left">
-          <form>
-            <div class="row">
-              <label>Tenor</label>
-              <select id="tenor">
-                <option value="1">1 bulan</option>
-                <option value="3">3 bulan</option>
-                <option value="6">6 bulan</option>
-                <option value="12">12 bulan</option>
-                <option value="36" disabled>36 bulan</option>
-                <option value="60" disabled>60 bulan</option>
-              </select>
+          input[type=number] {
+            -moz-appearance: textfield;
+          }
+        </style>
+        <h3 class="mb-4">SIMULASI KREDIT</h3>
+
+        <div class="career-form box-form">
+          <div class="left">
+            <form>
+              <div class="row">
+                <label>Tenor</label>
+                <select id="tenor">
+                  <option value="1">1 bulan</option>
+                  <option value="3">3 bulan</option>
+                  <option value="6">6 bulan</option>
+                  <option value="12">12 bulan</option>
+                  <option value="15">15 bulan</option>
+                  <option value="20"><b>20 bulan</b></option>
+                  <option value="24" disabled>24 bulan</option>
+                  <option value="30" disabled>30 bulan</option>
+                  <option value="60" disabled>60 bulan</option>
+                </select>
+              </div>
+              <div class="row">
+                <label>Harga Barang</label>
+                <input type="text" onkeydown="return numbersonly(this, event);"
+                  onkeyup="javascript:tandaPemisahTitik(this);" name="harga" class="i">
+              </div>
+              <div class="row">
+                <label>Uang Muka</label>
+                <input type="text" onkeydown="return numbersonly(this, event);"
+                  onkeyup="javascript:tandaPemisahTitik(this);" name="bayar_dulu" id="dpx" class="i"
+                  placeholder="Rp. 250.000 - 999.999">
+              </div>
+              <div class="row">
+                <label>Bunga %</label>
+                <input type="number" class="i" name="bunga" placeholder="Min 2%" value="3" disabled>
+              </div>
+              <div class="row">
+                <label>Biaya Administrasi</label>
+                <input type="number" name="admin" class="block" placeholder="50.000" disabled>
+              </div>
+              <div class="row submit">
+                <input type="button" onclick="simulasi()" class="btn-box btn-lg" value="Simulasi">
+              </div>
+            </form>
+          </div>
+          <br>
+          <div class="right">
+            <div class="address-box a-center">
+              <h4 class="reg">Pembayaran Perbulan</h4>
+              <h3 id="angsuran"></h3>
+              <br>
+              <h4 class="reg">Pembayaran Awal</h4>
+              <h3 id="dp_awal"></h3>
             </div>
-            <div class="row">
-              <label>Harga</label>
-              <input type="text" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);" name="harga" class="i">
-            </div>
-            <div class="row">
-              <label>Uang Muka</label>
-              <input type="text" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);" id="dpx" class="i" placeholder="Min. 250.000">
-            </div>
-            <div class="row">
-              <label>Bunga %</label>
-              <input type="number" class="i" name="bunga" placeholder="Min 2%" value="3" disabled>
-            </div>
-            <div class="row">
-              <label>Biaya Administrasi</label>
-              <input type="number" class="block" placeholder="50.000" disabled>
-            </div>
-            <div class="row submit">
-              <input type="button" onclick="simulasi()" class="btn-box btn-lg" value="Simulasi">
-            </div>
-          </form>
-        </div>
-        <div class="right">
-          <div class="address-box a-center">
-            <h4 class="reg">Pembayaran Perbulan</h4>
-            <h3 id="angsuran"></h3>
-            <br>
-            <h4 class="reg">Pembayaran Awal</h4>
-            <h3 id="dp_awal"></h3>
           </div>
         </div>
-      </div>
-      <script type="text/javascript" src="https://www.kreditplus.com/a.js"></script>
-      <script>
-        $(document).ready(function () {
+        <script type="text/javascript" src="https://www.kreditplus.com/a.js"></script>
+        <script>
+          $(document).ready(function () {
 
-        });
+          });
 
-        function simulasi() {
-          var i = 0;
-          $('.i:input').each(function (k, v) {
-            if ($(v).val() == "") {
-              $(this).css({
+          function simulasi() {
+            var i = 0;
+            $('.i:input').each(function (k, v) {
+              if ($(v).val() == "") {
+                $(this).css({
+                  'border-color': 'red'
+                });
+                i++;
+              }
+            });
+            if ($("#tenor").val() == "") {
+              $("#select").css({
                 'border-color': 'red'
               });
               i++;
             }
-
-          });
-          if ($("#tenor").val() == "") {
-            $("#select").css({
-              'border-color': 'red'
-            });
-            i++;
-          }
-          // Validasi Uang Muka
-          var uangMuka = parseFloat($("#dpx").val().replace(".", "").replace(",", ""));
-          if (uangMuka < 250000) {
+            var uangMuka = parseFloat($("#dpx").val().replace(".", ""));
+            if (uangMuka < 250000) {
               $("#dpx").css({
-                  'border-color': 'red'
+                'border-color': 'red'
               });
-              alert("Uang Muka harus minimal Rp. 250.000");
+              alert("Uang Muka Rp. 250.000 - 999.999");
               i++;
-          }
-          if (i == 0) {
-            var tenor = $("#tenor").val();
-            var harga = $('[name="harga"]').val();
-            harga = replaceTitik(harga);
-            var dp = $("#dpx").val();
-            dp = replaceTitik(dp);
-            var bunga = $('[name="bunga"]').val();
-            var cicilan = parseInt(harga) / parseInt(tenor);
-            var persen = parseInt(bunga) / 100;
-            var bunga_cicilan = (parseInt(harga) * persen) / 1;
-            var angsuran = cicilan + bunga_cicilan;
-            var tmp = "";
-            tmp = angsuran.toFixed(2);
-            var e = tmp.split(".");
-            console.log(e);
-            var t = "";
-            if (e.length) {
-              t = e[0];
-            } else {
-              t = angsuran;
             }
-            var rupiahx = rupiah(t);
-            if (e.length && e[1] != "00") {
-              rupiahx += "," + e[1];
+            if (i == 0) {
+              var tenor = $("#tenor").val();
+              var harga = $('[name="harga"]').val();
+              harga = replaceTitik(harga);
+              var dp = $("#dpx").val();
+              dp = replaceTitik(dp);
+              var bunga = $('[name="bunga"]').val();
+
+              var hargaSetelahUangMuka = parseInt(harga) - uangMuka;
+
+              var cicilan = parseInt(hargaSetelahUangMuka) / parseInt(tenor);
+              var persen = parseInt(bunga) / 100;
+              var bunga_cicilan = (parseInt(hargaSetelahUangMuka) * persen) / 1;
+              var angsuran = Math.floor(cicilan + bunga_cicilan);
+              var tmp = "";
+              tmp = angsuran.toFixed(2);
+              var e = tmp.split(".");
+              var t = "";
+              if (e.length) {
+                t = e[0];
+              } else {
+                t = angsuran;
+              }
+              var rupiahx = rupiah(t);
+              if (e.length && e[1] != "00") {
+                rupiahx += "," + e[1];
+              }
+              $("#angsuran").html(rupiahx);
+              $("#dp_awal").html(rupiah(dp));
+              $("#btns").show();
             }
-            $("#angsuran").html(rupiahx);
-            $("#dp_awal").html(rupiah(dp));
-            $("#btns").show();
           }
-        }
 
-        function replaceTitik(v) {
-          var ret = '';
-          for (var i = 0; i < v.length; i++) {
-            if (v[i] != ".")
-              ret += v[i];
+          function replaceTitik(v) {
+            var ret = '';
+            for (var i = 0; i < v.length; i++) {
+              if (v[i] != ".")
+                ret += v[i];
+            }
+            return ret;
           }
-          return ret;
-        }
 
-        function rupiah(val) {
-          var number_string = val.toString();
-          number_string = number_string.replace("-", "");
-          var sisa = number_string.length % 3,
-            rupiah = number_string.substr(0, sisa),
-            ribuan = number_string.substr(sisa).match(/\d{3}/g);
+          function rupiah(val) {
+            var number_string = val.toString();
+            number_string = number_string.replace("-", "");
+            var sisa = number_string.length % 3,
+              rupiah = number_string.substr(0, sisa),
+              ribuan = number_string.substr(sisa).match(/\d{3}/g);
 
-          if (ribuan) {
-            separator = sisa ? '.' : '';
-            rupiah += separator + ribuan.join('.');
+            if (ribuan) {
+              separator = sisa ? '.' : '';
+              rupiah += separator + ribuan.join('.');
+            }
+            return "Rp. " + rupiah;
           }
-          return "Rp. " + rupiah;
-        }
-      </script>
-    </div>
-  </section>
+        </script>
+      </div>
+    </section>
+  </div>
+  <!-- akhir slider -->
+
+  <!-- footer -->
   <footer>
-    <style>
-      .logo-foot img {
-        width: 100px; 
-        height: auto; 
-      }
-    </style>
-    <div class="foot-bottom">
-      <div class="wrapper">
-        <div class="logo-foot">
-          <a href="" target="_blank">
-            <img src="assets/logo/hitam1.png">
-          </a>
-        </div>
-        <div class="copyright">Copyright © 2023 PT Tecno Fath Finance</div>
-        <div class="sosmed-foot">
-          <style>
-            .ikon {
-              width: 20px; 
-              height: auto; 
-            }
-          </style>
-          <span>Follow Us</span>
-          <a class="ikon" href="" target="_blank"><img src="assets/logo/gh.png" alt=""></a>
-          <a class="ikon" href="" target="_blank"><img src="assets/logo/ig.png" alt=""></i></a>
-          <a class="ikon" href="" target="_blank"><img src="assets/logo/fb.png" alt=""></a>
-          <a class="ikon" href="" target="_blank"><img src="assets/logo/yt.png" alt=""></a>
-          <a class="ikon" href="" target="_blank"><img src="assets/logo/in.png" alt=""></a>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <p class="pt-4 pb-2">
+            <style>
+              .warna {
+                text-decoration: none;
+                color: #979797;
+              }
+            </style>
+            &copy; 2024 Copyright <a href="" class="container warna">Tecno Fath Finance.</a> All Rights Reserved.
+          </p>
         </div>
       </div>
     </div>
   </footer>
+  <!-- akhir footer -->
 
+  <!-- Bootstrap core JavaScript -->
+  <script src="assets/vendor/jquery/jquery.slim.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    $(document).ready(function () {
-      $("#sm").submit(function () {
-        if ($("#em").val() != "") {
-          $.post("https://www.kreditplus.com/newsletter", {
-            'data': $("#em").val(),
-            '_token': "vOxRYAQ1gzOTBogDIWOHypiwR6Sa2YAv0ShVcwEJ"
-          }, function (res) {
-            if (res.response == "ok") {
-              var msg_ok = "Thank you for registering with Kreditplus";
-              $("#tooltip_msg .intooltip").text(msg_ok);
-              $("#tooltip_msg").show();
-            } else {
-              if (res.response == "err") {
-                var msg_err = "Email Already Registered";
-                $("#tooltip_msg .intooltip").text(msg_err);
-                $("#tooltip_msg").show();
-
-              }
-            }
-            $("#em").val("");
-            $("#em").css({
-              'border-color': ''
-            });
-            if ($("#tooltip_msg").length) {
-              setTimeout(function () {
-                $("#tooltip_msg").hide('slow');
-              }, 5000);
-            }
-          }, 'json');
-        } else {
-          $("#em").css({
-            'border-color': 'red'
-          });
-        }
-        return false;
-      });
-    });
-  </script> <!-- Google tag (gtag.js) -->
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-38CJYSNMD8"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-
-    gtag('config', 'G-38CJYSNMD8');
+    AOS.init();
   </script>
+  <script src="assets/js/navbar-scroll.js"></script>
 </body>
 
 </html>
